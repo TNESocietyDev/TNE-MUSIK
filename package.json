@@ -2,7 +2,7 @@
   "name": "tne-musik",
   "private": true,
   "version": "0.1.0",
-  "homepage": "<https://lukzee.github.io/tne-musik>",
+  "homepage": "<https://lukzee.github.io/TNE-Musik>",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
