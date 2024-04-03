@@ -11,9 +11,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@near-wallet-selector/core": "^8.9.5",
+    "@near-wallet-selector/ledger": "^8.9.5",
+    "@near-wallet-selector/modal-ui": "^8.9.5",
+    "@near-wallet-selector/my-near-wallet": "^8.9.5",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "firebase": "^10.7.1",
+    "near-api-js": "^2.1.4",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
