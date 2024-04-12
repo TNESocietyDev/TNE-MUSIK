@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Error, Loader, SongCard } from "../components";
@@ -8,9 +8,11 @@ import {
 } from "../redux/features/playerSlice";
 import { mockSongs } from "../mockSongs";
 import { genres } from "../assets/constants";
+import axios from "axios";
 
 const Discover = () => {
   const dispatch = useDispatch();
+  const [songs, setSongs] = useState();
   const { genreListId } = useSelector((state) => state.player);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
@@ -23,6 +25,35 @@ const Discover = () => {
     // Adjust the audio file path based on your project structure
     const audioFilePath = `/${song.audioFilePath}`;
     dispatch(setActiveSong({ song: { ...song, audioFilePath }, data, i }));
+  };
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/fetchsongs");
+      console.log(response.data);
+      if (response.status === 200) {
+        fetchSpecificData(response.data);
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const fetchSpecificData = async (datas) => {
+    try {
+      const d = Promise.all(
+        datas.map(async (data) => {
+          console.log(data.url);
+          const url = data.uri.split("ipfs://")[1];
+          const response = await axios.get("https://ipfs.io/ipfs/" + uri);
+        })
+      );
+      setSongs(await d);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (

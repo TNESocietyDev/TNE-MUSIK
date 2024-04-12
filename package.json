@@ -3,10 +3,11 @@
   "name": "tne-musik",
   "private": true,
   "version": "0.1.0",
+  "type": "module",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "dev": "vite",
+    "dev": "vite --port 4000",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -17,9 +18,13 @@
     "@near-wallet-selector/modal-ui": "^8.9.5",
     "@near-wallet-selector/my-near-wallet": "^8.9.5",
     "@reduxjs/toolkit": "^1.8.5",
+    "@thirdweb-dev/storage": "^2.0.14",
     "axios": "^0.27.2",
     "buffer": "^6.0.3",
+    "express": "^4.19.2",
+    "files-from-path": "^1.0.4",
     "firebase": "^10.7.1",
+    "mongoose": "^8.3.1",
     "near-api-js": "^2.1.4",
     "process": "^0.11.10",
     "react": "^18.2.0",
@@ -27,7 +32,8 @@
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
-    "swiper": "^8.4.2"
+    "swiper": "^8.4.2",
+    "vite-plugin-api": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
