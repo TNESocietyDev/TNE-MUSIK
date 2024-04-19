@@ -1,9 +1,9 @@
 
 // Imports
-import * as _0_0 from "/C:/Users/IRETOMIWA/Desktop/Works/TNE-Musik/src/api/addsong.ts";
-import * as _0_1 from "/C:/Users/IRETOMIWA/Desktop/Works/TNE-Musik/src/api/connect.js";
-import * as _0_2 from "/C:/Users/IRETOMIWA/Desktop/Works/TNE-Musik/src/api/fetchsongs.ts";
-import * as _0_3 from "/C:/Users/IRETOMIWA/Desktop/Works/TNE-Musik/src/api/foodSchema.ts";
+import * as _0_0 from "/C:/Users/DELL/Desktop/TNE-Musik/src/api/addsong.ts";
+import * as _0_1 from "/C:/Users/DELL/Desktop/TNE-Musik/src/api/connect.js";
+import * as _0_2 from "/C:/Users/DELL/Desktop/TNE-Musik/src/api/fetchsongs.ts";
+import * as _0_3 from "/C:/Users/DELL/Desktop/TNE-Musik/src/api/foodSchema.ts";
 
 
 export const routeBase = "/api";

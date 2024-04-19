@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Error, Loader, SongCard } from "../components";
+import Carousel from "../components/Carousel";
 import {
   selectGenreListId,
   setActiveSong,
@@ -30,9 +31,9 @@ const Discover = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("/api/fetchsongs");
-      console.log(response.data);
+      // console.log(response.data.songs);
       if (response.status === 200) {
-        fetchSpecificData(response.data);
+        fetchSpecificData(response.data.songs);
       } else {
         console.error(response.statusText);
       }
@@ -45,9 +46,24 @@ const Discover = () => {
     try {
       const d = Promise.all(
         datas.map(async (data) => {
-          console.log(data.url);
+          // console.log(data.uri);
           const url = data.uri.split("ipfs://")[1];
-          const response = await axios.get("https://ipfs.io/ipfs/" + uri);
+          const response = await axios.get("https://ipfs.io/ipfs/" + url);
+          // console.log(response.data);
+
+          // set other song data
+          response.data.audioFilePath = response.data.audio.replace(
+            "ipfs://",
+            "https://ipfs.io/ipfs/"
+          );
+          response.data.image = response.data.image.replace(
+            "ipfs://",
+            "https://ipfs.io/ipfs/"
+          );
+          response.data.id = data._id
+          response.data.createdAt = data.createdAt
+
+          return response.data;
         })
       );
       setSongs(await d);
@@ -56,24 +72,22 @@ const Discover = () => {
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      try {
+        await fetchData();
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, []);
+
   return (
     <div className="flex flex-col">
-      <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
+      {/* <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
         <h2 className="font-bold text-3xl text-white text-left">
           Discover {genreTitle}
         </h2>
-
-        {/* <select
-          onChange={(e) => dispatch(selectGenreListId(e.target.value))}
-          value={genreListId || "pop"}
-          className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
-        >
-          {genres.map((genre) => (
-            <option key={genre.value} value={genre.value}>
-              {genre.title}
-            </option>
-          ))}
-        </select> */}
 
         <div class="relative">
           <select
@@ -98,12 +112,16 @@ const Discover = () => {
             </svg>
           </div>
         </div>
+      </div> */}
+      <div className="">
+        <Carousel />
       </div>
 
+      <h2 className="text-white my-2 font-bold text-2xl">Recomended</h2>
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.map((song, i) => (
+        {songs?.map((song, i) => (
           <SongCard
-            key={song.key}
+            key={song.id}
             song={song}
             isPlaying={isPlaying}
             activeSong={activeSong}

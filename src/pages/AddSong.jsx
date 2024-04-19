@@ -11,19 +11,6 @@ function AddSong() {
   const [items, setItems] = useState();
   const [loading, setloading] = useState(false);
 
-  function manipulate() {
-    console.log(fs.readFileSync);
-    axios
-      .post("/data.json", {
-        id: 5,
-        name: "Item 5",
-      })
-      .then((response) => {
-        console.log(response.data);
-        setItems(response.data);
-      });
-  }
-
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -71,7 +58,7 @@ function AddSong() {
         <div className="w-full mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
-            for="grid-song-name"
+            htmlFor="grid-song-name"
           >
             Title
           </label>
@@ -92,7 +79,7 @@ function AddSong() {
         <div className="w-full">
           <label
             className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
-            for="grid-subtitle"
+            htmlFor="grid-subtitle"
           >
             Subtitle
           </label>
@@ -106,17 +93,17 @@ function AddSong() {
           />
         </div>
 
-        <div class="flex flex-wrap -mx-3 mb-3 pt-5">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div className="flex flex-wrap -mx-3 mb-3 pt-5">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
-              class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
-              for="grid-artist"
+              className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
+              htmlFor="grid-artist"
             >
               artist
             </label>
             <input
               required
-              class="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-400 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-artist"
               name="artist"
               onChange={handleInput}
@@ -124,18 +111,18 @@ function AddSong() {
               placeholder="Artist Name"
             />
           </div>
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
-              class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
-              for="grid-genre"
+              className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
+              htmlFor="grid-genre"
             >
               genre
             </label>
-            <div class="relative">
+            <div className="relative">
               <select
                 name="genre"
                 onChange={handleInput}
-                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-400 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-genre"
               >
                 {genres.map((genre) => (
@@ -144,9 +131,9 @@ function AddSong() {
                   </option>
                 ))}
               </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                 <svg
-                  class="fill-current h-4 w-4"
+                  className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
@@ -157,23 +144,23 @@ function AddSong() {
           </div>
         </div>
 
-        <div class="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <label
-            class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
-            for="grid-image"
+            className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
+            htmlFor="grid-image"
           >
             Image
           </label>
           <div className="flex items-center space-x-6 bg-gray-200 py-3 px-4 rounded my-3">
-            <div class="shrink-0">
+            <div className="shrink-0">
               <img
-                class="h-16 w-16 object-cover rounded-full"
+                className="h-16 w-16 object-cover rounded-full"
                 src={image ? URL.createObjectURL(image) : "/images/default.png"}
                 alt="song photo"
               />
             </div>
-            <label class="block">
-              <span class="sr-only">Choose profile photo</span>
+            <label className="block">
+              <span className="sr-only">Choose profile photo</span>
               <input
                 type="file"
                 name="audio"
@@ -182,22 +169,22 @@ function AddSong() {
                   setImage(e.target.files[0]);
                   handleInput(e);
                 }}
-                class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
               />
             </label>
           </div>
         </div>
 
-        <div class="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <label
-            class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
-            for="grid-image"
+            className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2"
+            htmlFor="grid-image"
           >
             Song
           </label>
           <div className="flex items-center space-x-6 bg-gray-200 py-3 px-4 rounded my-3">
-            <label class="block">
-              <span class="sr-only">Choose Song</span>
+            <label className="block">
+              <span className="sr-only">Choose Song</span>
               <input
                 type="file"
                 required
@@ -205,7 +192,7 @@ function AddSong() {
                 onChange={handleInput}
                 accept="audio/mp3, audio/wav, audio/aac"
                 placeholder="Upload Song"
-                class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
               />
             </label>
           </div>
@@ -219,7 +206,7 @@ function AddSong() {
             >
               <svg
                 aria-hidden="true"
-                class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -233,13 +220,13 @@ function AddSong() {
                   fill="currentFill"
                 />
               </svg>
-              <span class="sr-only">Loading...</span>
+              <span className="sr-only">Loading...</span>
             </div>
           ) : (
             <input
               type="button"
               onClick={submitQuery}
-              class="align-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="align-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               value="Submit"
             />
           )}

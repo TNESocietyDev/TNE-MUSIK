@@ -3,7 +3,7 @@ import { Song } from "./foodSchema";
 
 connect();
 
-export const GET = async (res) => {
+export const GET = async (req, res) => {
   try {
     const songs = await Song.find();
     res.send({ songs });
